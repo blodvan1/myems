@@ -1,0 +1,21 @@
+{% extends 'myems_base.html' %} 
+
+{% block container %}
+<div class="container">
+	<h1>Profile</h1>
+	<table>
+		<tr>
+			<td width="50%"><strong>Emp No</strong></td>
+			<td width="50%">{{object.emp_no}}</td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td>{{object.first_name}} {{object.last_name }}</td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td>{{object.gender}}</td>
+		</tr>
+	</table>
+</div> 
+{% endblock %}
