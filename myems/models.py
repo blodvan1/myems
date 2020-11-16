@@ -49,7 +49,7 @@ class Employee(models.Model):
 	gender = models.CharField(max_length=1)
 	#gender = models.CharField(max_length=1, choices = GENDER_CHOICES)
 	hire_date = models.DateField()
-	profile_pic = models.ImageField(null=True, blank=True)
+	#profile_pic = models.ImageField(null=True, blank=True)
 	departments = models.ManyToManyField(Department, related_name = 'departments', through = 'DeptEmp')
 	image = StdImageField(upload_to=upload_path_handler, storage=fs, null=True, blank=True, max_length=255, variations={
 			'large': (600, 400),
