@@ -30,6 +30,9 @@ class Department(models.Model):
 	class Meta:
 		db_table = 'departments'
 
+	def __str__(self):
+			return "%s" % (self.dept_name)
+
 def upload_path_handler(self, filename):
 
 	return u'profile/user_{id}/{file}'.format(id=self.pk, file=filename)
@@ -47,6 +50,9 @@ class Employee(models.Model):
 	first_name = models.CharField(max_length=14)
 	last_name = models.CharField(max_length=16)
 	gender = models.CharField(max_length=1)
+	ib_admin = models.IntegerField(max_length=1)
+	ib_unstuffing = models.IntegerField(max_length=1)
+	ib_putaway = models.IntegerField(max_length=1)
 	#gender = models.CharField(max_length=1, choices = GENDER_CHOICES)
 	hire_date = models.DateField()
 	#profile_pic = models.ImageField(null=True, blank=True)
@@ -56,6 +62,8 @@ class Employee(models.Model):
 			'thumbnail': (100, 100, True),
 			'medium': (300, 200),
 		})
+	#on_delete=models.CASCADE,
+
 	
 
 	def __str__(self):
@@ -68,8 +76,8 @@ def generate_next_emp_no():
 	return 1 if Employee.objects.all().count() == 0 else Employee.objects.all().aggregate(Max('emp_no'))['emp_no__max'] + 1
 
 class DeptEmp(models.Model):
-	emp_no = models.ForeignKey(Employee, db_column='emp_no', on_delete=models.DO_NOTHING)
-	dept_no = models.ForeignKey(Department, db_column='dept_no', on_delete=models.DO_NOTHING)
+	emp_no = models.ForeignKey(Employee, db_column='emp_no', on_delete=models.CASCADE)
+	dept_no = models.ForeignKey(Department, db_column='dept_no', on_delete=models.CASCADE)
 	from_date = models.DateField()
 	to_date = models.DateField()
    
@@ -78,20 +86,8 @@ class DeptEmp(models.Model):
 		unique_together = (('emp_no', 'dept_no'),)
 
 
-class DeptManager(models.Model):
-	dept_no = models.ForeignKey(Department, db_column='dept_no', on_delete=models.DO_NOTHING)
-	emp_no = models.ForeignKey(Employee, db_column='emp_no', on_delete=models.DO_NOTHING)
-	from_date = models.DateField()
-	to_date = models.DateField()
-
-	class Meta:
-		db_table = 'dept_manager'
-		unique_together = (('emp_no', 'dept_no'),)
-
-
-
 class Salary(models.Model):
-	emp_no = models.ForeignKey(Employee, db_column='emp_no', related_name = 'employeeSalaries', on_delete=models.DO_NOTHING)
+	emp_no = models.ForeignKey(Employee, db_column='emp_no', related_name = 'employeeSalaries', on_delete=models.CASCADE)
 	salary_amount = models.IntegerField()
 	from_date = models.DateField()
 	to_date = models.DateField()
@@ -102,10 +98,19 @@ class Salary(models.Model):
 
 
 class Titles(models.Model):
-	emp_no = models.ForeignKey(Employee, db_column='emp_no', related_name = 'employeeTitles', on_delete=models.DO_NOTHING)
+	emp_no = models.ForeignKey(Employee, db_column='emp_no', related_name = 'employeeTitles', on_delete=models.CASCADE)
 	title = models.CharField(max_length=50)
 	from_date = models.DateField()
 	to_date = models.DateField(blank=True, null=True)
 
 	class Meta:
 		db_table = 'titles'
+
+
+class Dg(models.Model):	
+	sn = models.IntegerField(primary_key=True)
+	commercial_reference = models.CharField(max_length=50)
+	un_code = models.CharField(max_length=50)
+
+	class Meta:
+		db_table = 'dg_project'

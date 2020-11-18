@@ -1,11 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404 , redirect
 from .forms import EmployeeForm
-from .models import Employee, Salary, generate_next_emp_no
+from .models import Employee, Salary, generate_next_emp_no, Dg
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView, UpdateView, RedirectView
 from django.urls import reverse_lazy
 
+from .forms import DgSearchForm
+from search_views.search import SearchListView
+from search_views.filters import BaseFilter
 
 def my_profile(request, pk):
 	profile = get_object_or_404(Employee, pk=pk)
@@ -121,3 +124,17 @@ class ProfileUpdateView(UpdateView):
 	model = Employee
 	form_class = EmployeeForm
 	success_url = reverse_lazy('profile_list')
+
+
+class DgFilter(BaseFilter):
+	search_fields = {
+	'search_text': ['commercial_reference']
+
+	}
+
+class DgSearchList(SearchListView):
+    model = Dg
+    paginate_by = 100
+    template_name = "dg.html"
+    form_class = DgSearchForm
+    filter_class = DgFilter

@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {'options': '-c search_path=public'},
-        'NAME': 'employees',
+        'NAME': 'versatility2',
         'USER': 'postgres',
         'PASSWORD': 'password',
         'HOST': 'localhost',
@@ -166,4 +166,4 @@ LOGGING = {
 }
 
 # Disable default limit of 1000 fields per request. Needed for bulk deletion of objects
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 100
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 500

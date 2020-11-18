@@ -32,6 +32,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     url(r'^admin/',admin.site.urls),
     url(r'^$', views.IndexView.as_view(), name = 'index'),
+    url(r'^dg/', views.DgSearchList.as_view(), name = 'dg'),
     #url(r'^employees/(?P<pk>[0-9]+)/profile/$', views.my_profile, name='my_profile'),
     url(r'^employees/profile/list/$', views.ProfileListView.as_view(), name='profile_list'),
     url(r'^employees/(?P<pk>[0-9]+)/profile/$', views.ProfileDetailView.as_view(), name='my_profile'),

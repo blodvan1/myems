@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Employee, Department, DeptEmp, DeptManager, Salary, Titles)
+from .models import (Employee, Department, DeptEmp, Salary, Titles, Dg)
 
 from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
@@ -48,7 +48,7 @@ class EmployeeAdmin(admin.ModelAdmin):
 	placeholder = '/images/profile/placeholder.thumbnail.jpg'
 	form = EmployeeForm
 	search_fields = ('emp_no', 'first_name', 'last_name', 'hire_date', 'gender')
-	list_display = ('image_thumbnail','emp_no', 'first_name', 'last_name', 'gender', 'hire_date' )
+	list_display = ('image_thumbnail','emp_no', 'first_name', 'last_name', 'gender', 'hire_date','ib_admin','ib_unstuffing','ib_putaway')
 	list_display_links = ('emp_no',)
 	list_filter = ('hire_date', GenderFilter, DepartmentFilter)
 	save_on_top = True
@@ -83,6 +83,6 @@ myems_admin_site = MyEmsAdminSite()
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Department)
 admin.site.register(DeptEmp)
-admin.site.register(DeptManager)
 admin.site.register(Salary)
 admin.site.register(Titles)
+admin.site.register(Dg)

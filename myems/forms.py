@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee, Salary
+from .models import Employee, Salary, Dg
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 
@@ -25,11 +25,10 @@ class EmployeeForm(forms.ModelForm):
 
 	image = forms.ImageField(label='Profile Image', widget=AdminImageFieldWidget(), required=False)
 
-	readonly_fields = [..., "headshot_image"]
 
 	class Meta:
 		model = Employee
-		fields = ('image', 'emp_no', 'birth_date', 'first_name', 'last_name', 'gender', 'hire_date')
+		fields = ('image', 'emp_no', 'birth_date', 'first_name', 'last_name', 'gender', 'hire_date','ib_admin','ib_unstuffing','ib_putaway')
 
 
 class SalaryForm(forms.ModelForm):
@@ -37,3 +36,11 @@ class SalaryForm(forms.ModelForm):
 	class Meta:
 		model = Salary
 		fields = '__all__'
+
+
+class DgSearchForm(forms.Form):
+	search_text = forms.CharField(
+					required = False,
+					label='Search UN Code using EAN',
+					widget=forms.TextInput(attrs={'placeholder': 'Scan Barcode'})
+                  )

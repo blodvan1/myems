@@ -19,6 +19,7 @@
 			<th>Emp No</th>
 			<th>First Name</th>
 			<th>Last Name</th>
+			<th>Gender</th>
 			<th>Update Action</th>
 			<th>Delete Action</th>
 		</tr>
@@ -30,6 +31,7 @@
 			</td>
 			<td>{{employee.first_name}}</td>
 			<td>{{employee.last_name}}</td>
+			<td>{{employee.gender}}</td>
 			<td><a class="btn right" href="{% url 'my_profile_update' employee.emp_no %}">Update</a></td>
             <td><a class="btn right" href="{% url 'my_profile_delete' employee.emp_no %}">Delete</a></td>
 		</tr>	
