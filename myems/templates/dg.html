@@ -4,6 +4,12 @@
 
 <div class="container">
 
+<div id="menu">
+	<ul>
+		<li><a class = "btn right" href="{%url 'dg_create' %}">Add New</a></li>
+	</ul>
+</div>
+
     <h2>Search UN Code using EAN</h2>
 
     <form class="form-inline" action="" method="GET">
@@ -14,11 +20,15 @@
 
     <table class="table table-bordered table-condensed">
         <tr>
+        	<th>Part Name</th>
+        	<th>EAN13 Code</th>
             <th>Commercial ref</th>
             <th>UN Code</th>
         </tr> 
         {% for object in object_list %}
         <tr>
+        	<td>{{object.commercial_designation_in_english}}</td>
+        	<td>{{object.code_ean13}}</td>
             <td>{{object.commercial_reference}}</td>
             <td>{{object.un_code}}</td>
         </tr>

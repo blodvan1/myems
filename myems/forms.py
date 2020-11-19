@@ -11,6 +11,12 @@ class AdminImageFieldWidget(forms.widgets.FileInput):
 	#def render(self, name, image, attrs=None):
 		#render_html = '<img src="%s"/>' % (image.thumbnail.url) if image and hasattr(image, "url") else '<img src="%s"/>' % (self.placeholder)
 		#return mark_safe("%s%s" % (render_html, super(AdminImageFieldWidget, self).render(name,image,attrs)))
+class DgForm(forms.ModelForm):
+	
+	class Meta:
+		model = Dg
+		fields = ('id', 'commercial_designation_in_english', 'code_ean13', 'commercial_reference', 'un_code')
+
 
 class EmployeeForm(forms.ModelForm):
 	

@@ -108,9 +108,17 @@ class Titles(models.Model):
 
 
 class Dg(models.Model):	
-	sn = models.IntegerField(primary_key=True)
+	id = models.IntegerField(primary_key=True)
+	commercial_designation_in_english = models.CharField(max_length=100)
+	code_ean13 = models.CharField(max_length=50)
 	commercial_reference = models.CharField(max_length=50)
 	un_code = models.CharField(max_length=50)
 
 	class Meta:
-		db_table = 'dg_project'
+		db_table = 'dg_gen'
+
+	def __str__(self):
+		return "ID = %s, Part name = %s, EAN13 = %s" % (self.id, self.commercial_designation_in_english, self.code_ean13)
+
+def generate_next_id_no():
+	return 1 if Dg.objects.all().count() == 0 else Dg.objects.all().aggregate(Max('id'))['id__max'] + 1

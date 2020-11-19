@@ -36,6 +36,7 @@ urlpatterns = [
     #url(r'^employees/(?P<pk>[0-9]+)/profile/$', views.my_profile, name='my_profile'),
     url(r'^employees/profile/list/$', views.ProfileListView.as_view(), name='profile_list'),
     url(r'^employees/(?P<pk>[0-9]+)/profile/$', views.ProfileDetailView.as_view(), name='my_profile'),
+    url(r'^dg_create/', views.DgCreateView.as_view(), name='dg_create'),
     url(r'^employees/profile/create/$', views.ProfileCreateView.as_view(), name='my_profile_create'),
     url(r'^employees/(?P<pk>[0-9]+)/profile/update/$', views.ProfileUpdateView.as_view(), name='my_profile_update'),
     url(r'^employees/(?P<pk>[0-9]+)/profile/delete/$', views.ProfileDeleteView.as_view(), name='my_profile_delete'),

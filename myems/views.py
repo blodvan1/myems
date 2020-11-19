@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404 , redirect
-from .forms import EmployeeForm
-from .models import Employee, Salary, generate_next_emp_no, Dg
+from .forms import EmployeeForm, DgForm
+from .models import Employee, Salary, generate_next_emp_no, Dg, generate_next_id_no
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView, UpdateView, RedirectView
 from django.urls import reverse_lazy
@@ -125,10 +125,20 @@ class ProfileUpdateView(UpdateView):
 	form_class = EmployeeForm
 	success_url = reverse_lazy('profile_list')
 
+class DgCreateView(CreateView):
+	template_name = 'dg_create.html'
+	form_class = DgForm
+	success_url = reverse_lazy('dg')
+
+	def get_initial(self):
+		initial = super(DgCreateView, self).get_initial()
+		initial['id'] = generate_next_id_no()
+		return initial
+
 
 class DgFilter(BaseFilter):
 	search_fields = {
-	'search_text': ['commercial_reference']
+	'search_text': ['code_ean13']
 
 	}
 
