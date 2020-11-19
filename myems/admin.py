@@ -4,9 +4,14 @@ from .models import (Employee, Department, DeptEmp, Salary, Titles, Dg)
 from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
 
-from .forms import EmployeeForm, SalaryForm
+from .forms import EmployeeForm, SalaryForm, DgForm
 from django.utils.safestring import mark_safe
 
+
+class DgAdmin(admin.ModelAdmin):
+	form = DgForm
+	search_fields = ('id','commercial_designation_in_english', 'code_ean13', 'commercial_reference','un_code')
+	list_display = ('id','commercial_designation_in_english', 'code_ean13', 'commercial_reference','un_code')
 
 class SalaryTableInline(admin.TabularInline):
 	form = SalaryForm
@@ -85,4 +90,4 @@ admin.site.register(Department)
 admin.site.register(DeptEmp)
 admin.site.register(Salary)
 admin.site.register(Titles)
-admin.site.register(Dg)
+admin.site.register(Dg, DgAdmin)
