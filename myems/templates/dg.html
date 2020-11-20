@@ -4,19 +4,26 @@
 
 <div class="container">
 
- <div id="menu">
+<!-- <div id="menu">
+	<ul>
+		<li><a class = "btn right green" href="{%url 'dg_create' %}">Add New</a></li>
+	</ul>
+</div> -->
+
+    <h2>Search UN Code using EAN</h2>
+
+    <div id="menu">
 	<ul>
 		<li><a class = "btn right green" href="{%url 'dg_create' %}">Add New</a></li>
 	</ul>
 </div>
-
-    <h2>Search UN Code using EAN</h2>
-
+	
     <form class="form-inline" action="" method="GET">
         {{ form }}
         <button class="btn green" type="submit">Search</button>
         </fieldset>
     </form>
+    
 
     <table class="table table-bordered table-condensed">
         <tr>
@@ -34,6 +41,8 @@
         </tr>
         {% endfor %}
     </table>
+
+
 
 {% if is_paginated %}
 <ul class="pagination center-align">
