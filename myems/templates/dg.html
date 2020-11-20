@@ -6,7 +6,7 @@
 
  <div id="menu">
 	<ul>
-		<li><a class = "btn right" href="{%url 'dg_create' %}">Add New</a></li>
+		<li><a class = "btn right green" href="{%url 'dg_create' %}">Add New</a></li>
 	</ul>
 </div>
 
@@ -14,7 +14,7 @@
 
     <form class="form-inline" action="" method="GET">
         {{ form }}
-        <button class="btn" type="submit">Search</button>
+        <button class="btn green" type="submit">Search</button>
         </fieldset>
     </form>
 
@@ -22,7 +22,7 @@
         <tr>
         	<th>Part Name</th>
         	<th>EAN13 Code</th>
-            <th>Commercial ref</th>
+            <th>Commercial Reference</th>
             <th>UN Code</th>
         </tr> 
         {% for object in object_list %}
