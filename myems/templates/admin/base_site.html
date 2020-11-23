@@ -1,0 +1,43 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Schneider Admin
+
+{% endblock %}
+
+{% block extrastyle %}
+
+<style> 
+	#header {
+		background-color:#4caf50;
+	}
+	.module h2, .module caption, .inline-group h2 {
+		background-color:#4caf50;
+	}
+	div.breadcrumbs{
+		background-color:#59d116;
+	}
+	.button, input[type=submit], input[type=button], .submit-row input, a.button {
+		background-color:#4caf50;
+		background:#4caf50;
+
+	}
+
+	.selector-chosen h2 {
+		background:#4caf50;
+	}
+	.paginator a:link, .paginator a:visited {
+		background:#4caf50;
+	}
+	.button.default, input[type=submit].default, .submit-row input.default {
+		background:#4caf50;
+	}
+
+
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Schneider Admin</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
