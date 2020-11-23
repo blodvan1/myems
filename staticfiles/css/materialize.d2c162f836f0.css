@@ -2969,6 +2969,7 @@ ul.staggered-list li {
 
 table, th, td {
   border: none;
+  font-size: x-large;
 }
 
 table {

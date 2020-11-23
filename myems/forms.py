@@ -48,5 +48,6 @@ class DgSearchForm(forms.Form):
 	search_text = forms.CharField(
 					required = False,
 					label='Search UN Code using EAN',
-					widget=forms.TextInput(attrs={'placeholder': 'Scan Barcode'})
+					widget=forms.TextInput(attrs={'placeholder': 'Scan Barcode Here','size': '40',
+                                  'style': 'font-size: xx-large'})
                   )
