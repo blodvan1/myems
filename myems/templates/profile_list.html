@@ -16,6 +16,7 @@
 <div class="collection">
 	<table id="employee_list">
 		<tr>
+			<th>Image</th>
 			<th>Emp No</th>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -25,6 +26,11 @@
 		</tr>
 		{% for employee in employee_list %}
 		<tr>
+			<td>
+				{% if employee.image %}
+    				<img src="{{STATIC_URL}}{{employee.image.medium.url}}">
+				{% endif %}
+			</td>
 			<td>
 				<a class="collection-item" href="{% url 'my_profile' employee.emp_no %}">
 				{{employee.emp_no}}</a>

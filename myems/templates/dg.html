@@ -1,5 +1,7 @@
 {% extends 'myems_base.html' %} 
 
+{% load static %}
+
 {% block container %}
 
 <div class="container">
@@ -26,14 +28,27 @@
     <table table class="table table-bordered table-condensed">
     	<table id = "t01" style="display:none">
         <tr>
+        	<th>Label</th>
         	<th>Commercial Reference</th>
         	<th>Description</th>
         	<th>EAN13 Code</th>          
             <th>UN Code</th>
-            <th>Label Image </th>
         </tr> 
         {% for object in object_list %} 
         <tr>
+        	<td>
+				{% if object.un_code == '3091' %}
+    				<img src="{% static 'UN3091.medium.jpg' %}">
+    			{% elif object.un_code == '3090' %}
+    				<img src="{% static 'un3090.medium.jpg' %}">
+    			{% elif object.un_code == '3480' %}
+    				<img src="{% static 'UN3480.medium.jpg' %}">
+    			{% elif object.un_code == '3481' %}
+    				<img src="{% static 'UN3481.medium.jpg' %}">
+    				{% elif object.un_code == '2800' %}
+    				<img src="{% static 'UN2800.medium.jpg' %}">
+				{% endif %}
+			</td>
         	<td>{{object.commercial_reference}}</td>
         	<td>{{object.commercial_designation_in_english}}</td>
         	<td>{{object.code_ean13}}</td>       
@@ -68,7 +83,7 @@
 		if (clicked === "true") 
 		{
 			var x = document.getElementById("t01");
-			    x.style.display = "block";
+			    x.style.display = "";
 			  }
 			   else {
 			    x.style.display = "none";
