@@ -144,7 +144,7 @@ class DgFilter(BaseFilter):
 
 class DgSearchList(SearchListView):
     model = Dg
-    paginate_by = 100
+   # paginate_by = 100
     template_name = "dg.html"
     form_class = DgSearchForm
     filter_class = DgFilter

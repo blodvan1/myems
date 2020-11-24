@@ -3,37 +3,34 @@
 {% block container %}
 
 <div class="container">
-
-<!-- <div id="menu">
-	<ul>
-		<li><a class = "btn right green" href="{%url 'dg_create' %}">Add New</a></li>
-	</ul>
-</div> -->
-
+	
     <h2>Parts List</h2>
+    <body onload ="search()"> </body>
 
-    <div id="menu">
+<!-- add new part feature -->
+   <!-- <div id="menu" >
 	<ul>
 		<li><a class = "btn right green" href="{%url 'dg_create' %}">Add New</a></li>
 	</ul>
-</div>
+</div>  -->
 	
     <form class="form-inline" action="" method="GET">
         {{ form }}
-        <button class="btn green" type="submit">Search</button>
+        <button class="btn green" name ="clicked" value = "true" type="submit">Search</button>
         </fieldset>
     </form>
- 	
- 	<button class="btn green" type="submit" onclick ="showTable()">Show Table</button>
+ 
+ <!-- show/hide table feature -->
+ <!--	<button class="btn green" type="submit" onclick ="showTable()">Show Table</button> -->
 
     <table table class="table table-bordered table-condensed">
-    	<table id = "t01" font-size = 40px>
-    	<!--<table id = "t01" style="display:none"> -->
+    	<table id = "t01" style="display:none">
         <tr>
         	<th>Commercial Reference</th>
         	<th>Description</th>
         	<th>EAN13 Code</th>          
             <th>UN Code</th>
+            <th>Label Image </th>
         </tr> 
         {% for object in object_list %} 
         <tr>
@@ -46,14 +43,38 @@
     </table>
 
 <script>
- 	function showTable() {
- 		var x = document.getElementById("t01");
- 	 	if (x.style.display === "none") {
+ 
+ //show/hide table script
+ //	function showTable() {
+ 		//var x = document.getElementById("t01");
+ 	 	//if (x.style.display === "none") {
+			  //  x.style.display = "block";
+			  //} else {
+			  //  x.style.display = "none";
+			 // }
+			 //	} 
+
+	function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+	
+	
+	function search(){
+		var clicked = getParameterByName('clicked');
+		if (clicked === "true") 
+		{
+			var x = document.getElementById("t01");
 			    x.style.display = "block";
-			  } else {
-			    x.style.display = "none";
 			  }
-			 	}	
+			   else {
+			    x.style.display = "none";
+			  }			 	
+		}
+	
  </script>   
 
 
